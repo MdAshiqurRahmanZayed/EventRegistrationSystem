@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-2">
+     Email: <b>{{request.user}}</b> <br>
+     First Name: <b>{{request.user.first_name}}</b> <br>
+     Last Name: <b>{{request.user.last_name}}</b> <br>
+     <br>
+     <h5>Update:</h5>
+     <div class="container">
+
+          <form method="post" enctype="multipart/form-data" id="postForm">
+               {% csrf_token %}
+               {{ form }}
+               <br>
+               <button class="btn btn-primary mt-3" type="submit">
+                    Update User profile
+               </button>
+          </form>
+     </div>
+</div>
+
+{% endblock content %}
