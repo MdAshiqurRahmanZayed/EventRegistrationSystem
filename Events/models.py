@@ -9,6 +9,14 @@ class Event(models.Model):
     location = models.CharField(max_length=200)
     slots_available = models.IntegerField(default=0)
     
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True,null=True, blank=True)
+    
+    def __str__(self):
+        return self.title
 class RegistrationForEvent(models.Model):
     user  = models.ForeignKey(Account, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE) 
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True,null=True, blank=True)
