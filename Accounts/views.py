@@ -93,7 +93,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class MyTokenObtainPairView(TokenObtainPairView):
      serializer_class = MyTokenObtainPairSerializer
-
+     
+@login_required(login_url='login')
 def dashboard(request):
      userProfile = get_object_or_404(Account,email = request.user)
      form = UserForm(instance = userProfile)

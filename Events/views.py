@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .forms import eventForm
 from django.contrib.auth.decorators import login_required
-from .models import Event
+from .models import Event,RegistrationForEvent
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages,auth
 
@@ -54,8 +54,13 @@ def event_list(request):
 
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
+    try:
+          registration_check = RegistrationForEvent.objects.filter(user=request.user,event=event).exists()    
+    except:
+         registration_check = False
     context = {
-         'event':event
+         'event':event,
+         'registration_check':registration_check,
     }
     return render(request, 'Events/event_detail.html',context)
 
@@ -87,4 +92,25 @@ def delete_event(request, pk):
      event.delete()
      messages.warning(request,"Event deleted successfully.")
      return redirect('dashboard')
+     
+@login_required(login_url='login')
+def registrationOrUnregistrationForEvents(request,pk):
+     event = Event.objects.get(id = pk)
+     if RegistrationForEvent.objects.filter(user=request.user,event=event).exists():
+          RegistrationForEvent.objects.filter(user=request.user,event=event).delete()
+          messages.warning(request,"Unregistered successfully.")
+          event.slots_available +=1
+          event.save()
+          return redirect('event_detail',pk)
+          
+     else:
+          if event.slots_available>0:
+               RegistrationForEvent.objects.create(user=request.user,event=event)
+               messages.success(request,"Registered successfully.")
+               event.slots_available -=1
+               event.save()
+          else:
+               messages.warning(request,"Sorry no availabel slot.")
+               return redirect('event_detail',pk)
+     return redirect('event_detail',pk)
      

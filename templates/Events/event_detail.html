@@ -33,5 +33,24 @@
           </a>
      </div>
      {% endif %}
+     <div class="container mt-3">
+          {% if registration_check %}
+          <a href="{% url 'registration_event' event.id %}"
+               onclick="return confirm('Are you want to Unregister this event?');">
+               <div class="btn mt-2 btn-warning">
+                    Unregister Event
+               </div>
+          </a>
+          {% else %}
+          <a href="{% url 'registration_event' event.id %}"
+               onclick="return confirm('Are you want to register this event?');">
+               <div class="btn mt-2 btn-info">
+                    Register event
+               </div>
+          </a>
+
+          {% endif %}
+     </div>
+
 </div>
 {% endblock %}
