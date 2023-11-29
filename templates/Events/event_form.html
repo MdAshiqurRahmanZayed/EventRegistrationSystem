@@ -1,21 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-     <h1>Create event</h1>
+<div class="container mb-3">
+     <h1>
+          {% if 'update' in request.path %}
+          Update
+          {% else %}
+          Create
+          {% endif %}
+          event</h1>
      <form action="" method="post">
           {% csrf_token %}
           {{form}}
           <button class="btn btn-primary mt-3" type="submit">
-               
+
                {% if 'update' in request.path %}
-                    Update 
-                    {% else %}
-                    Create
+               Update
+               {% else %}
+               Create
                {% endif %}
-                    
+
           </button>
      </form>
 </div>
 {% endblock content %}
-     
