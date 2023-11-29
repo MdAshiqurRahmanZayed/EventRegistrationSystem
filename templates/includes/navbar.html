@@ -1,18 +1,22 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary shadow sticky-top">
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow sticky-top ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">
-      <h2>Event Registration System with REST API</h2>
+    <a class="navbar-brand " href="/">
+      <h2>Event Registration System</h2>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <form hx-get="{% url 'searchEvent' %}" method="GET" class="d-flex" hx-target="body" role="search">
+      <input class="form-control me-2" type="search" name="keyword" placeholder="Search Event" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
-
       <ul class="navbar-nav  mb-2 mb-lg-0 ms-auto ">
+        <li class="nav-item">
+        </li>
         {% if user.is_authenticated %}
 
         <li class="nav-item">
@@ -47,7 +51,7 @@
             <div class="btn btn-outline-success">Register</div>
           </a>
         </li>
-        
+
         {% endif %}
 
       </ul>

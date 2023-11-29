@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Event,RegistrationForEvent
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages,auth
-
+from django.db.models import Q
 
 def home(request):
      events = Event.objects.all().order_by('-created_at')[:6]
@@ -114,3 +114,29 @@ def registrationOrUnregistrationForEvents(request,pk):
                return redirect('event_detail',pk)
      return redirect('event_detail',pk)
      
+     
+def searchEvent(request):
+    if 'keyword' in request.GET:
+          keyword = request.GET['keyword']
+
+    if keyword:
+               events = Event.objects.order_by('-created_at').filter(Q(title__icontains=keyword) |
+                                                                   Q(description__icontains=keyword) |
+                                                                   Q(location__icontains=keyword))
+               event_count = events.count()
+               paginator = Paginator(events, 3)  
+
+               page = request.GET.get('page')
+               try:
+                    events = paginator.page(page)
+               except PageNotAnInteger:
+                    events = paginator.page(1)
+               except EmptyPage:
+                    events = paginator.page(paginator.num_pages)
+    context = {
+          "events": events,
+          "event_count": event_count,
+          "keyword": keyword,
+     }
+    return render(request, "Events/event_list.html",context)
+

@@ -16,8 +16,8 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 class RegistrationForEvent(models.Model):
-    user  = models.OneToOneField(Account, on_delete=models.CASCADE)
-    event = models.OneToOneField(Event, on_delete=models.CASCADE) 
+    user  = models.ForeignKey(Account, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE) 
     
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True,null=True, blank=True)

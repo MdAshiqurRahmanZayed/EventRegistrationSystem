@@ -40,10 +40,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     
-    "Events",
     "Accounts",
+    "Events",
+    "api",
     
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +141,21 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Custom Account
 AUTH_USER_MODEL = 'Accounts.Account'
+
+# rest framework
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+    #    'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+   ),
+#    'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAdminUser'
+#    ),
+# 'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+#     ]
+}
+
 
 # Some default Simple JWT
 SIMPLE_JWT = {

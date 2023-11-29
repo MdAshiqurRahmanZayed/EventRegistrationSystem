@@ -1,0 +1,13 @@
+<div class="col-md-3">
+     <ul class="list-group">
+          <a hx-boost="true" class="list-group-item {% if '/dashboard/' in request.path   %} active{% endif %}" href="{% url 'dashboard' %}"> 
+               Dashboard
+          </a>
+          <a hx-boost="true" class="list-group-item {% if '/created-events/' in request.path   %} active{% endif %}" href="{% url 'created_events' %}"> 
+               Created Events
+          </a>
+          <a hx-boost="true" class="list-group-item {% if '/registered-events/' in request.path   %} active{% endif %}" href="{% url 'registered_events' %}"> 
+               Registered Events
+          </a>
+     </ul>
+</div>

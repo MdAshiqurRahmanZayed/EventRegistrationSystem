@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-2">
+     <div class="row">
+          {% include 'includes/dashboard_sidebar.html' %}
+          <div class="col-md-9">
+               <div class="container  card pb-3">
+                    <h3>Registered Events:</h3>
+                    <ul class="list-group mt-3">
+
+                         {% for event in  registered_events %}
+                         <li class="list-group-item">
+                              <a href="{% url 'event_detail' event.event.id %}">
+                                   {{event.event.title}}
+                              </a>
+                         </li>
+                         {% endfor %}
+
+
+                    </ul>
+               </div>
+          </div>
+
+     </div>
+</div>
+
+{% endblock content %}

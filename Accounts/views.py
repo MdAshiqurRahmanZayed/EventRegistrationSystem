@@ -12,7 +12,7 @@ from django.contrib.auth.decorators  import login_required
 from .serializers import RegisterSerializer
 from rest_framework.decorators import api_view 
 from django.contrib import messages,auth
-
+from Events.models import *
 
 def register(request):
      if request.method == "POST":
@@ -97,6 +97,8 @@ class MyTokenObtainPairView(TokenObtainPairView):
 @login_required(login_url='login')
 def dashboard(request):
      userProfile = get_object_or_404(Account,email = request.user)
+     events = Event.objects.filter(user= request.user)
+     register_events= RegistrationForEvent.objects.filter(user=request.user).order_by('-created_at')
      form = UserForm(instance = userProfile)
      if request.method == "POST":
           form = UserForm(request.POST,instance = userProfile)
@@ -106,7 +108,9 @@ def dashboard(request):
           else:
                return redirect('dashboard')
      context = {
-          'form':form
+          'form':form,
+          'events':events.count,
+          'register_events':register_events.count,
      }
      return render(request,'Accounts/dashboard.html',context)
 
@@ -114,3 +118,39 @@ def dashboard(request):
 def logout(request):
      auth.logout(request)
      return redirect('login')
+
+@login_required(login_url = 'login')
+def created_events(request):
+     events = Event.objects.filter(user=request.user).order_by('-created_at')
+     context= {
+          'events':events
+     }
+     return render(request,'Accounts/created_events.html',context)
+
+
+@login_required(login_url = 'login')
+def registered_events(request):
+     registered_events = RegistrationForEvent.objects.filter(user=request.user).order_by('-created_at')
+     context= {
+          'registered_events':registered_events
+     }
+     return render(request,'Accounts/registered_events.html',context)
+
+
+
+# api
+from rest_framework.views import APIView
+from .serializers import *
+from rest_framework import status,permissions
+
+class UserProfileAPI(APIView):
+    serializer_class = UserSerializer
+    def get(self, request, pk):
+        try:
+            profile = Account.objects.get(pk=pk)
+            serializer = UserSerializer(profile)
+            return Response(serializer.data)
+        except:
+            return Response("User profile does not exist", status=status.HTTP_404_NOT_FOUND)
+    
+  
