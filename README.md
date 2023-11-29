@@ -1,5 +1,4 @@
 # EventRegistrationSystem
-
 ## Setup
 The first thing is cloneing the repository:
 ```sh
@@ -36,3 +35,9 @@ you can use swagger
 ```
 http://127.0.0.1:8000/swagger/
 ```
+
+## Demo image:<br>
+![](screenshot/a.png)
+![](screenshot/b.png)
+![](screenshot/c.png)
+![](screenshot/d.png)
