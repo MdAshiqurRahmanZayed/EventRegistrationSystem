@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view, permission_classes
 
 
 class EventListCreateAPIView(ListCreateAPIView):
-    queryset = Event.objects.all()
+    queryset = Event.objects.all().order_by('-created_at')
     serializer_class = EventModelSerializer 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 

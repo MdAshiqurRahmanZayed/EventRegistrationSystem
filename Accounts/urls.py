@@ -11,7 +11,7 @@ urlpatterns = [
     path("login/",login,name='login'),
     path('logout/',logout,name='logout'),
     path("dashboard/",dashboard,name="dashboard"),
-    path("created-events/",created_events,name="created_events"),
+    path("created-events/",created_events,name="created_events_user"),
     path("registered-events/",registered_events,name="registered_events"),
     
     # API 

@@ -1,0 +1,442 @@
+swagger: '2.0'
+info:
+  title: EventRegistrationSystem API
+  description: Test description
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: contact@snippets.local
+  license:
+    name: BSD License
+  version: v1
+host: 127.0.0.1:8000
+schemes:
+- http
+basePath: /
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+- Basic: []
+paths:
+  /accounts/api/register/:
+    post:
+      operationId: accounts_api_register_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - accounts
+    parameters: []
+  /accounts/api/token/:
+    post:
+      operationId: accounts_api_token_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/MyTokenObtainPair'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/MyTokenObtainPair'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/token/refresh/:
+    post:
+      operationId: accounts_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/TokenRefresh'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenRefresh'
+      tags:
+      - accounts
+    parameters: []
+  /accounts/user-profile/{id}/:
+    get:
+      operationId: accounts_user-profile_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - accounts
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /api/:
+    get:
+      operationId: api_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/EventModel'
+      tags:
+      - api
+    post:
+      operationId: api_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EventModel'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/EventModel'
+      tags:
+      - api
+    parameters: []
+  /api/created-events/:
+    get:
+      operationId: api_created-events_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - api
+    parameters: []
+  /api/events-all-crud/:
+    get:
+      operationId: api_events-all-crud_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/EventModel'
+      tags:
+      - api
+    post:
+      operationId: api_events-all-crud_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EventModel'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/EventModel'
+      tags:
+      - api
+    parameters: []
+  /api/events-all-crud/{id}/:
+    get:
+      operationId: api_events-all-crud_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/EventModel'
+      tags:
+      - api
+    put:
+      operationId: api_events-all-crud_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EventCreate'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/EventCreate'
+      tags:
+      - api
+    patch:
+      operationId: api_events-all-crud_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EventCreate'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/EventCreate'
+      tags:
+      - api
+    delete:
+      operationId: api_events-all-crud_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this event.
+      required: true
+      type: integer
+  /api/registered-events/:
+    get:
+      operationId: api_registered-events_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - api
+    parameters: []
+  /api/registration-or-unregistration/{id}/:
+    post:
+      operationId: api_registration-or-unregistration_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - api
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /api/{id}/:
+    get:
+      operationId: api_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/EventCreate'
+      tags:
+      - api
+    put:
+      operationId: api_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EventCreate'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/EventCreate'
+      tags:
+      - api
+    patch:
+      operationId: api_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EventCreate'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/EventCreate'
+      tags:
+      - api
+    delete:
+      operationId: api_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this event.
+      required: true
+      type: integer
+definitions:
+  MyTokenObtainPair:
+    required:
+    - email
+    - password
+    type: object
+    properties:
+      email:
+        title: Email
+        type: string
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        minLength: 1
+  TokenRefresh:
+    required:
+    - refresh
+    type: object
+    properties:
+      refresh:
+        title: Refresh
+        type: string
+        minLength: 1
+      access:
+        title: Access
+        type: string
+        readOnly: true
+        minLength: 1
+  User:
+    required:
+    - username
+    - email
+    type: object
+    properties:
+      username:
+        title: Username
+        type: string
+        maxLength: 150
+        minLength: 1
+      first_name:
+        title: First name
+        type: string
+        maxLength: 150
+      last_name:
+        title: Last name
+        type: string
+        maxLength: 150
+      email:
+        title: Email address
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+  EventModel:
+    required:
+    - title
+    - description
+    - date
+    - time
+    - location
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      user:
+        $ref: '#/definitions/User'
+      title:
+        title: Title
+        type: string
+        maxLength: 200
+        minLength: 1
+      description:
+        title: Description
+        type: string
+        minLength: 1
+      date:
+        title: Date
+        type: string
+        format: date
+      time:
+        title: Time
+        type: string
+      location:
+        title: Location
+        type: string
+        maxLength: 200
+        minLength: 1
+      slots_available:
+        title: Slots available
+        type: integer
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+      modified_at:
+        title: Modified at
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+  EventCreate:
+    required:
+    - title
+    - description
+    - date
+    - time
+    - location
+    type: object
+    properties:
+      title:
+        title: Title
+        type: string
+        maxLength: 200
+        minLength: 1
+      description:
+        title: Description
+        type: string
+        minLength: 1
+      date:
+        title: Date
+        type: string
+        format: date
+      time:
+        title: Time
+        type: string
+      location:
+        title: Location
+        type: string
+        maxLength: 200
+        minLength: 1
+      slots_available:
+        title: Slots available
+        type: integer
