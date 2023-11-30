@@ -1,5 +1,6 @@
 # EventRegistrationSystem
 ## Setup
+The Event Registration System is a web-based platform designed to streamline the process of organizing and managing events.<br>
 The first thing is cloneing the repository:
 ```sh
 $ git clone https://github.com/MdAshiqurRahmanZayed/EventRegistrationSystem.git

@@ -1,7 +1,8 @@
 swagger: '2.0'
 info:
   title: EventRegistrationSystem API
-  description: Test description
+  description: The Event Registration System is a web-based platform designed to streamline
+    the process of organizing and managing events.
   termsOfService: https://www.google.com/policies/terms/
   contact:
     email: contact@snippets.local
@@ -86,9 +87,9 @@ paths:
       in: path
       required: true
       type: string
-  /api/:
+  /api/v1/api/:
     get:
-      operationId: api_list
+      operationId: api_v1_api_list
       description: ''
       parameters: []
       responses:
@@ -101,7 +102,7 @@ paths:
       tags:
       - api
     post:
-      operationId: api_create
+      operationId: api_v1_api_create
       description: ''
       parameters:
       - name: data
@@ -117,9 +118,9 @@ paths:
       tags:
       - api
     parameters: []
-  /api/created-events/:
+  /api/v1/api/created-events/:
     get:
-      operationId: api_created-events_list
+      operationId: api_v1_api_created-events_list
       description: ''
       parameters: []
       responses:
@@ -128,9 +129,9 @@ paths:
       tags:
       - api
     parameters: []
-  /api/events-all-crud/:
+  /api/v1/api/events-all-crud/:
     get:
-      operationId: api_events-all-crud_list
+      operationId: api_v1_api_events-all-crud_list
       description: ''
       parameters: []
       responses:
@@ -143,7 +144,7 @@ paths:
       tags:
       - api
     post:
-      operationId: api_events-all-crud_create
+      operationId: api_v1_api_events-all-crud_create
       description: ''
       parameters:
       - name: data
@@ -159,9 +160,9 @@ paths:
       tags:
       - api
     parameters: []
-  /api/events-all-crud/{id}/:
+  /api/v1/api/events-all-crud/{id}/:
     get:
-      operationId: api_events-all-crud_read
+      operationId: api_v1_api_events-all-crud_read
       description: ''
       parameters: []
       responses:
@@ -172,7 +173,7 @@ paths:
       tags:
       - api
     put:
-      operationId: api_events-all-crud_update
+      operationId: api_v1_api_events-all-crud_update
       description: ''
       parameters:
       - name: data
@@ -188,7 +189,7 @@ paths:
       tags:
       - api
     patch:
-      operationId: api_events-all-crud_partial_update
+      operationId: api_v1_api_events-all-crud_partial_update
       description: ''
       parameters:
       - name: data
@@ -204,7 +205,7 @@ paths:
       tags:
       - api
     delete:
-      operationId: api_events-all-crud_delete
+      operationId: api_v1_api_events-all-crud_delete
       description: ''
       parameters: []
       responses:
@@ -218,9 +219,9 @@ paths:
       description: A unique integer value identifying this event.
       required: true
       type: integer
-  /api/registered-events/:
+  /api/v1/api/registered-events/:
     get:
-      operationId: api_registered-events_list
+      operationId: api_v1_api_registered-events_list
       description: ''
       parameters: []
       responses:
@@ -229,9 +230,9 @@ paths:
       tags:
       - api
     parameters: []
-  /api/registration-or-unregistration/{id}/:
+  /api/v1/api/registration-or-unregistration/{id}/:
     post:
-      operationId: api_registration-or-unregistration_create
+      operationId: api_v1_api_registration-or-unregistration_create
       description: ''
       parameters: []
       responses:
@@ -244,9 +245,9 @@ paths:
       in: path
       required: true
       type: string
-  /api/{id}/:
+  /api/v1/api/{id}/:
     get:
-      operationId: api_read
+      operationId: api_v1_api_read
       description: ''
       parameters: []
       responses:
@@ -257,7 +258,7 @@ paths:
       tags:
       - api
     put:
-      operationId: api_update
+      operationId: api_v1_api_update
       description: ''
       parameters:
       - name: data
@@ -273,7 +274,7 @@ paths:
       tags:
       - api
     patch:
-      operationId: api_partial_update
+      operationId: api_v1_api_partial_update
       description: ''
       parameters:
       - name: data
@@ -289,7 +290,7 @@ paths:
       tags:
       - api
     delete:
-      operationId: api_delete
+      operationId: api_v1_api_delete
       description: ''
       parameters: []
       responses:
